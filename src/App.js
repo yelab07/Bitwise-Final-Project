@@ -1,25 +1,42 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from './Pages/Header/Header';
+import { useState } from "react";
+import ThemeContext from "./Pages/Context/ThemeContext";
+
 import ProductDetailsPage from './Pages/Product/ProductDetailsPage';
 import ProductsPage from './Pages/Products/ProductsPage';
+import Navbar from './Pages/NavBar/Navbar';
+
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const styles = {
+    containerStyles: {
+      backgroundColor: darkMode === true ? "black" : "white",
+      height: "100vh",
+    },
+  };
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <ProductsPage />
-          </Route>
-          <Route exact path="/product/:id">
-            <ProductDetailsPage />
-          </Route>
-          <Route exact path="/cart"></Route>
-          <Route exact path="/checkout"></Route>
-          <Route  path="/"> 404 page</Route>
-        </Switch>
-      </Router>
+      
+      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+        <Router>
+          <div style={styles.containerStyles}>
+            <Navbar />
+            <Switch>
+              <Route exact path="/">
+                <ProductsPage />
+              </Route>
+              <Route exact path="/product/:id">
+                <ProductDetailsPage />
+              </Route>
+              <Route exact path="/cart"></Route>
+              <Route exact path="/checkout"></Route>
+              <Route path="/"> 404 page</Route>
+            </Switch>
+          </div>
+        </Router>
+      </ThemeContext.Provider>
     </div>
   );
 }
