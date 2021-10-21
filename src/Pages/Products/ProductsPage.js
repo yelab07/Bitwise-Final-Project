@@ -18,31 +18,31 @@ const ProductsPage = () => {
   useEffect(() => {
     getproducts();
   }, []);
-  const productList = products.map((prod, index) => {
-    const { image, title, price, id,category} = prod;
+  
+    
     return (
       <div>
-        <div calssName="product-contaier " key={id}>
-          <Link to={`/product/${id}`}>
-            {/* <div className="ui link cards">
-            <div className="card"> */}
-            <div className="product-poster">
-              <img src={image} alt={title} />
-            </div>
-            <div className="product-name">{title}</div>
-            <div className="product-info">
-              <div className="info">$ {price}</div>
-              <div className="info">{category}</div>
-            </div>
-            {/* </div>
-          </div> */}
-          </Link>
+        
+        <div>
+          {products.map((items, index) => (
+            { image, title, price, id,category} = items;
+            // <Link  to={`/products/${id}`}>
+              <div className="product-poster">
+                <img src={image} alt={title} />
+              </div>
+              <div className="product-name">{title}</div>
+              <div className="product-info">
+                <div className="info">$ {price}</div>
+                <div className="info">{category}</div>
+              </div>
+            // </Link>
+          ))}
         </div>
       </div>
     );
-  });
+  
     
-  return <>{productList}</>;
+
   
 };
 
