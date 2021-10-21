@@ -18,20 +18,22 @@ function App() {
   };
   return (
     <div className="App">
-      
       <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
         <Router>
           <div style={styles.containerStyles}>
             <Navbar />
             <Switch>
-              <Route exact path="/">
-                <ProductsPage />
-              </Route>
-              <Route exact path="/product/:id">
-                <ProductDetailsPage />
-              </Route>
-              <Route exact path="/cart"></Route>
-              <Route exact path="/checkout"></Route>
+              <div calssName="productList">
+                <Route exact path="/">
+                  <ProductsPage />
+                </Route>
+
+                <Route exact path="/product/:id">
+                  <ProductDetailsPage />
+                </Route>
+                <Route exact path="/cart"></Route>
+                <Route exact path="/checkout"></Route>
+              </div>
               <Route path="/"> 404 page</Route>
             </Switch>
           </div>
