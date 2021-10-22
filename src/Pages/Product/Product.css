@@ -1,0 +1,22 @@
+.productContainer{
+    width: 50%;
+    margin:auto;
+    /* position:relative; */
+    display:flex;
+    justify-content:space-between;
+    /* margin-left: 60px; */
+}
+
+.productImage {
+    float:left; 
+    width: 40%;
+    background-color: #ff0000;
+    height: 400px;
+}
+
+.describtionContainer {
+float: right;
+    background-color: #00ff00;
+    height: 400px;
+    width: 60%;
+}

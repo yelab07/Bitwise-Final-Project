@@ -22,6 +22,7 @@ function App() {
         <Router>
           <div style={styles.containerStyles}>
             <Navbar />
+            <ProductDetailsPage />
             <Switch>
               <div calssName="productList">
                 <Route exact path="/">
