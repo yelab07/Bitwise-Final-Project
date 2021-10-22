@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import { useParams } from 'react-router';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import "./Product.css";
 
 const ProductDetailsPage = () => {
@@ -16,16 +16,18 @@ const ProductDetailsPage = () => {
   console.log(product);
 
   useEffect(() => {
-    getproduct();
-  }, []);
+    if (id && id !== "") getproduct(id);
+  }, [id]);
 
   // const prodID = useParams();
 
   return (
     <>
       <div className="productContainer">
-        <div className="productImage"></div>
-        <div className="describtionContainer">
+        <div className="productImage">
+          <img src={product.image} alt={product.title} />
+        </div>
+        {/* <div className="describtionContainer">
           <h1 className="describtion title">{product.title}</h1>
           <hr />
           <h2 className="describtion price">$ {product.price}</h2>
@@ -37,13 +39,10 @@ const ProductDetailsPage = () => {
           >
             Add to Cart
           </button>
-        </div>
-          
+        </div> */}
       </div>
     </>
-
   );
-}
+};
 
-
-export default ProductDetailsPage
+export default ProductDetailsPage;
