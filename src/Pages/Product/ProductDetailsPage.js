@@ -5,6 +5,7 @@ import "./Product.css";
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+const [cart, setCart] = useState([]);
 
   const getproduct = async (id) => {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -13,20 +14,19 @@ const ProductDetailsPage = () => {
 
     setProduct(data);
   };
-console.log(product);
+  console.log(product);
 
   useEffect(() => {
     if (id && id !== "") getproduct(id);
   }, [id]);
 
-    // useEffect(() => {
-    //   console.log(id);
+  // useEffect(() => {
+  //   console.log(id);
 
-    //   fetch(`https://fakestoreapi.com/products/${id}`)
-    //     .then((res) => res.json())
-    //     .then((data) => setProduct(data));
-    // }, [id]);
-
+  //   fetch(`https://fakestoreapi.com/products/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setProduct(data));
+  // }, [id]);
 
   // const prodID = useParams();
 
@@ -43,8 +43,8 @@ console.log(product);
           <h2 className="describtion category">{product.category}</h2>
           <p className="description mainDescription">{product.describtion}</p>
           <button
-          // onClick={() => handleCart(product)}
-          // className="btn btn-outline-primary my-5"
+          onClick={() => setCart(product)}
+          className="btn btn-outline-primary my-5"
           >
             Add to Cart
           </button>

@@ -2,13 +2,14 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 import ThemeContext from "./Pages/Context/ThemeContext";
-
+import CartPage from './Pages/Cart/CartPage';
 import ProductDetailsPage from './Pages/Product/ProductDetailsPage';
 import ProductsPage from './Pages/Products/ProductsPage';
 import Navbar from './Pages/NavBar/Navbar';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [cart, setCart] = useState([]);
 
   const styles = {
     containerStyles: {
@@ -18,7 +19,7 @@ function App() {
   };
   return (
     <div className="App">
-      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      <ThemeContext.Provider value={{dark:[darkMode, setDarkMode ],shopingCart:[cart,setCart]} >
         <Router>
           <div style={styles.containerStyles}>
             <Navbar />
@@ -32,7 +33,9 @@ function App() {
                 <Route exact path="/product/:id">
                   <ProductDetailsPage />
                 </Route>
-                <Route exact path="/cart"></Route>
+                <Route exact path="/cart">
+                  <CartPage />
+                </Route>
                 <Route exact path="/checkout"></Route>
               </div>
               <Route path="/"> 404 page</Route>

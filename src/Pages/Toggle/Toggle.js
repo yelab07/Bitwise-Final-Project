@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import ThemeContext from "../Context/ThemeContext";
 
 const Toggle = () => {
-  const { darkMode, setDarkMode } = useContext(ThemeContext);
+  const { dark } = useContext(ThemeContext);
+  const { darkMode, setDarkMode } = dark;
 
   const styles = {
     toggleContainer: {

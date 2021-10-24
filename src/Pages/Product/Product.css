@@ -20,11 +20,11 @@
 
 .productImage {
     float:left; 
-    width: 40%;
-    /* background-color: #ff0000; */
-    height: 400px;
+    width: 45%;
+   height: 400px;
 }
 .productImage img{
+    
     height: 100%;
   width:100%;
   object-fit:contain;
@@ -34,5 +34,5 @@
 float: right;
     background-color: #6de0fd;
     height: 400px;
-    width: 60%;
+    width: 55%;
 }
