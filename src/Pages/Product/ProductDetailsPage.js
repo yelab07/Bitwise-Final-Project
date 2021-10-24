@@ -31,7 +31,7 @@ console.log(product);
   // const prodID = useParams();
 
   return (
-    <>
+    <div className="main-container">
       <div className="productContainer">
         <div className="productImage">
           <img src={product.image} alt={product.title} />
@@ -50,7 +50,7 @@ console.log(product);
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
