@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import ThemeContext from "../Context/ThemeContext";
 
 const Toggle = () => {
-  const { dark } = useContext(ThemeContext);
-  const { darkMode, setDarkMode } = dark;
-
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
+  
+// value={{dark:[darkMode, setDarkMode ],shopingCart:[cart,setCart]}
   const styles = {
     toggleContainer: {
       height: "50px",

@@ -32,7 +32,7 @@ const Navbar = () => {
               <div className="header__optionBasket">
                 <ShoppingCartIcon />
                 <span className="header__optionLineTwo header__basketCount">
-                  {/* {basket?.length} */}
+                  {/* {basket?.length} */} 0
                 </span>
               </div>
             </NavLink>

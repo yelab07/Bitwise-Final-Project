@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams,useHistory } from "react-router-dom";
 import "./Product.css";
+import { cartContext } from "../Context/ThemeContext";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
+  const history = useHistory();
   const [product, setProduct] = useState({});
-const [cart, setCart] = useState([]);
-
+    const { cart, setCart } = useContext(cartContext);
+  const [count, setCount] = useState(1);
+console.log(cart);
   const getproduct = async (id) => {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
     const data = await response.json();
@@ -42,13 +45,32 @@ const [cart, setCart] = useState([]);
           <h2 className="describtion price">$ {product.price}</h2>
           <h2 className="describtion category">{product.category}</h2>
           <p className="description mainDescription">{product.describtion}</p>
-          <button
-          onClick={() => setCart(product)}
-          className="btn btn-outline-primary my-5"
-          >
-            Add to Cart
-          </button>
         </div>
+        <div className="addContainer">
+          <div>
+            <button className="cntBtn" onClick={() => setCount(count - 1)}>
+              -
+            </button>
+            {count}
+            <button
+              className="cntBtn"
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <button
+          onClick={() => {
+            setCart([...cart, { ...product, count }]);
+            history.push("/cart");
+          }}
+          className="cntBtn"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
