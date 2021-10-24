@@ -22,10 +22,10 @@ const ProductsPage = () => {
   
     
   return (
-    <div className="productList">
-      {products.map((items, index) => (
-        <Link to={`/products/${items.id}`}>
-          <div className="product-contaier">
+    <div className="productList" >
+      {products.map((items) => (
+        <Link to={`/product/${items.id}`}>
+          <div key={items.id } className="product-contaier">
             <div className="product-poster">
               <img src={items.image} alt={items.title} />
             </div>
