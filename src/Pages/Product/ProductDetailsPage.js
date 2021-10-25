@@ -6,9 +6,9 @@ import { cartContext } from "../Context/ThemeContext";
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const history = useHistory();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
     const { cart, setCart } = useContext(cartContext);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
 console.log(cart);
   const getproduct = async (id) => {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -62,7 +62,22 @@ console.log(cart);
             </button>
           </div>
         </div>
-        <button
+        {cart.includes(product) ? (
+          <button
+            className="add remove"
+            onClick={() => setCart(cart.filter((c) => c.id !== product.id))}
+          >
+            Remove from Cart
+          </button>
+        ) : (
+            <button className="add" onClick={() => {
+              setCart([...cart, { ...product, count }]);
+              history.push("/cart");
+            }}>
+            Add to Cart
+          </button>
+        )}
+        {/* <button
           onClick={() => {
             setCart([...cart, { ...product, count }]);
             history.push("/cart");
@@ -70,7 +85,7 @@ console.log(cart);
           className="cntBtn"
         >
           Add to Cart
-        </button>
+        </button> */}
       </div>
     </div>
   );
