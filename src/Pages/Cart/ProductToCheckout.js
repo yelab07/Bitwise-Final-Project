@@ -1,10 +1,10 @@
 import React,{useContext} from "react";
 import "./ProductToCheckout.css";
-import { cartContext } from "../Context/ThemeContext";
+import { cartContext } from "../../Context/ThemeContext";
 
 
-function ProductToCheckout({ id, title, image, rating,price }) {
-  const [{ cart }, dispatch] = useContext(cartContext);
+function ProductToCheckout({ id, title, image, rating, price }) {
+    const [ dispatch] = useContext(cartContext);
 
   const removeItem = () => {
     
@@ -31,9 +31,12 @@ function ProductToCheckout({ id, title, image, rating,price }) {
               <p>🌟</p>
             ))} */}
         </div>
-        {!hideButton && (
-          <button onClick={removeItem}>Remove from Basket</button>
-        )}
+              {!hideButton && (
+                  <button onClick={removeItem}>Remove from Basket</button>
+               
+              )}
+            //   {/* )} */}
+        
       </div>
     </div>
   );

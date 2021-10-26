@@ -1,6 +1,6 @@
 // import ThemeContext from "../Context/ThemeContext";
 import React, { useContext } from "react";
-import { cartContext } from "../Context/ThemeContext";
+import { cartContext } from "../../Context/ThemeContext";
 import ProductToCheckout from "./ProductToCheckout"
 import Subtotal from "./Subtotal";
 
@@ -23,7 +23,7 @@ const CartPage = () => {
                 title={item.title}
                 image={item.image}
                 price={item.price}
-                rating={item.rating}
+                // rating={item.rating}
               />
             ))}
           </div>

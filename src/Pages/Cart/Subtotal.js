@@ -1,13 +1,15 @@
-import React from "react";
 import "./Subtotal.css";
+import React, { useContext } from "react";
+
 import CurrencyFormat from "react-currency-format";
-import { useStateValue } from "./StateProvider";
-import { getBasketTotal } from "./reducer";
+import { BasketTotal } from "../../Context/Reducer";
+import { cartContext } from "../../Context/ThemeContext";
+
 import { useHistory } from "react-router-dom";
 
 function Subtotal() {
   const history = useHistory();
-  const [{ basket }, dispatch] = useStateValue();
+   const [{ cart }, dispatch] = useContext(cartContext);
 
   return (
     <div className="subtotal">
@@ -16,7 +18,7 @@ function Subtotal() {
           <>
             <p>
               {/* Part of the homework */}
-              Subtotal ({basket.length} items): <strong>{value}</strong>
+              Subtotal ({cart.length} items): <strong>{value}</strong>
             </p>
             {/* <small className="subtotal__gift">
               <input type="checkbox" /> This order contains a gift
@@ -24,13 +26,13 @@ function Subtotal() {
           </>
         )}
         decimalScale={2}
-        value={getBasketTotal(basket)} // Part of the homework
+        value={BasketTotal(cart)} // Part of the homework
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}
       />
 
-      <button onClick={(e) => history.push("/payment")}>
+      <button onClick={(e) => history.push("/checkout")}>
         Proceed to Checkout
       </button>
     </div>
