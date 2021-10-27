@@ -1,37 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams,useHistory } from "react-router-dom";
 import "./Product.css";
-import { cartContext } from "../../Context/ThemeContext";
+import cartContext from "../../Context/ThemeContext";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const history = useHistory();
-  const [product, setProduct] = useState([]);
-    const { cart, setCart } = useContext(cartContext);
-  const [count, setCount] = useState(0);
-console.log(cart);
+  const [product, setProduct] = useState({});
+  const { cart, setCart } = useContext(cartContext);
+  const [count, setCount] = useState(1);
+
   const getproduct = async (id) => {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
     const data = await response.json();
-    //  console.log(data);
-
     setProduct(data);
   };
-  console.log(product);
-
   useEffect(() => {
     if (id && id !== "") getproduct(id);
   }, [id]);
-
-  // useEffect(() => {
-  //   console.log(id);
-
-  //   fetch(`https://fakestoreapi.com/products/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setProduct(data));
-  // }, [id]);
-
-  // const prodID = useParams();
 
   return (
     <div className="main-container">
@@ -62,7 +48,16 @@ console.log(cart);
             </button>
           </div>
         </div>
-        {cart.includes(product) ? (
+        <button
+          onClick={() => {
+            setCart([...cart, { ...product, count }]);
+            history.push("/checkout");
+          }}
+          className="cntBtn"
+        >
+          Add To Cart
+        </button>
+        {/* {cart.includes(product) ? (
           <button
             className="add remove"
             onClick={() => setCart(cart.filter((c) => c.id !== product.id))}
@@ -70,22 +65,16 @@ console.log(cart);
             Remove from Cart
           </button>
         ) : (
-            <button className="add" onClick={() => {
+          <button
+            className="add"
+            onClick={() => {
               setCart([...cart, { ...product, count }]);
-              history.push("/cart");
-            }}>
+              history.push("/");
+            }}
+          >
             Add to Cart
           </button>
-        )}
-        {/* <button
-          onClick={() => {
-            setCart([...cart, { ...product, count }]);
-            history.push("/cart");
-          }}
-          className="cntBtn"
-        >
-          Add to Cart
-        </button> */}
+        )} */}
       </div>
     </div>
   );

@@ -1,31 +1,24 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import "./Products.css";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
-
   const getproducts = async () => {
     const response = await fetch(`https://fakestoreapi.com/products`);
     const data = await response.json();
     //  console.log(data);
-
-    setProducts(data);
+  setProducts(data);
   };
   console.log(products);
-
-  useEffect(() => {
+ useEffect(() => {
     getproducts();
   }, []);
-  
-    
-  return (
+     return (
     <div className="productList" >
-      {products.map((items) => (
+      {products.map((items,index) => (
         <Link to={`/product/${items.id}`}>
-          <div key={items.id } className="product-contaier">
+          <div key={index } className="product-contaier">
             <div className="product-poster">
               <img src={items.image} alt={items.title} />
             </div>

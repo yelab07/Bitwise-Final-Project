@@ -1,15 +1,21 @@
-import React from "react";
-import { Nav, NavLink,NavMenu, NavBtn, NavBtnLink } from "./NavStyles";
-import  ShoppingCartIcon from "@material-ui/icons/ShoppingBasket";
+import React, { useContext } from "react";
+import { Nav, NavLink, NavMenu, NavBtn, NavBtnLink } from "./NavStyles";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingBasket";
 import "./Nav.css";
 import Toggle from "../Toggle/Toggle";
+import cartContext from "../../Context/ThemeContext";
+
 const Navbar = () => {
-  
+  const { cart } = useContext(cartContext);
+  const adder = () => {
+    let total = 0
+    cart.forEach(item=>total+=item.count)
+}
   return (
     <>
       <Nav>
         <NavLink to="/">
-          <h3>LAGOAL</h3>
+          <h3>OwnIt </h3>
         </NavLink>
 
         <NavMenu>
@@ -22,25 +28,24 @@ const Navbar = () => {
               type="text"
             />
           </div>
+          npm
         </NavMenu>
         <NavMenu>
           <NavBtn>
             <NavBtnLink to="/">Products</NavBtnLink>
           </NavBtn>
           <NavBtn>
-            <NavLink to="/cart">
+            <NavLink to="/checkout">
               <div className="header__optionBasket">
                 <ShoppingCartIcon />
                 <span className="header__optionLineTwo header__basketCount">
-                  {/* {basket?.length} */} 0
+                  {adder()}
                 </span>
               </div>
             </NavLink>
           </NavBtn>
           <NavBtn>
-            {/* <nav style={styles.navToggle}> */}
             <Toggle />
-            {/* </nav> */}
           </NavBtn>
         </NavMenu>
       </Nav>
