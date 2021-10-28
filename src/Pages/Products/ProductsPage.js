@@ -18,11 +18,11 @@ const ProductsPage = () => {
     <div className="productList" >
       {products.map((items,index) => (
         <Link to={`/product/${items.id}`}>
-          <div key={index } className="product-contaier">
+          <div key={index } className="product-container">
             <div className="product-poster">
               <img src={items.image} alt={items.title} />
             </div>
-            <div className="product-name">{items.title}</div>
+            <div className="product-name"><p>{items.title}</p></div>
             <div className="product-info">
               <div className="info">$ {items.price}</div>
               <div className="info">{items.category}</div>

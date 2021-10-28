@@ -1,11 +1,21 @@
 import React, { useContext } from "react";
-import { Nav, NavLink, NavMenu, NavBtn, NavBtnLink } from "./NavStyles";
+import {
+  Nav,
+  NavLink,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+  SearchInput,
+} from "./NavStyles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingBasket";
-import "./Nav.css";
 import Toggle from "../Toggle/Toggle";
-import cartContext from "../../Context/ThemeContext";
+import cartContext from "../../Context/cartContext";
+import { countContext } from "../../App";
+
+
 
 const Navbar = () => {
+  // const{count,setCount}=useContext(countContext)
   const { cart } = useContext(cartContext);
   const adder = () => {
     let total = 0
@@ -15,20 +25,18 @@ const Navbar = () => {
     <>
       <Nav>
         <NavLink to="/">
-          <h3>OwnIt </h3>
+          <h3>Fake Store</h3>
         </NavLink>
 
         <NavMenu>
-          <div className="formContainer">
-            <input
+          <>
+            <SearchInput
               placeholder="Search"
               // onChange={props.onType}
               className="searchInput"
-              // value={props.searchText}
               type="text"
             />
-          </div>
-          npm
+          </>
         </NavMenu>
         <NavMenu>
           <NavBtn>
@@ -38,10 +46,10 @@ const Navbar = () => {
             <NavLink to="/checkout">
               <div className="header__optionBasket">
                 <ShoppingCartIcon />
-                <span className="header__optionLineTwo header__basketCount">
-                  {adder()}
-                </span>
               </div>
+              <span className="header__optionLineTwo header__basketCount">
+                {adder()}
+              </span>
             </NavLink>
           </NavBtn>
           <NavBtn>

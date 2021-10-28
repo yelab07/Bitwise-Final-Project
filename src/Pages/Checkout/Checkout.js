@@ -1,15 +1,16 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
-// import Announcement from "../components/Announcement";
-// import Footer from "../components/Footer";
-// import NavBar from "../../Components/NavBar";
-// import { mobile } from "../responsive";
+import { AiFillDelete } from "react-icons/ai";
+
 import { useHistory } from "react-router";
-import CartContext from "../../Context/ThemeContext";
+import CartContext from "../../Context/cartContext";
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: white;
+`;
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -28,14 +29,17 @@ const Top = styled.div`
 `;
 
 const TopButton = styled.button`
+  border-radius: 5%;
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
+  border: 3px solid #15cdfc;
+  box-shadow: 20px 20px 60px #a2a4a5, -20px -20px 60px hsl(204, 3%, 69%);
 `;
 
 const Bottom = styled.div`
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
@@ -44,8 +48,12 @@ const Info = styled.div`
 `;
 
 const Product = styled.div`
+  background-color: white;
   display: flex;
+  border: none;
   justify-content: space-between;
+  border: 3px solid#15cdfc;
+  box-shadow: 20px 20px 60px #a2a4a5, -20px -20px 60px hsl(204, 3%, 69%);
 `;
 
 const ProductDetail = styled.div`
@@ -67,15 +75,6 @@ const Details = styled.div`
 const ProductName = styled.span``;
 
 const ProductId = styled.span``;
-
-// const ProductColor = styled.div`
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 50%;
-//   background-color: ${(props) => props.color};
-// `;
-
-// const ProductSize = styled.span``;
 
 const PriceDetail = styled.div`
   flex: 1;
@@ -132,20 +131,41 @@ const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 const QtyInput = styled.input`
   width: 35px;
-  text-align:center;
+  text-align: center;
 `;
 
 const Button = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: black;
+  background-color: #5cd8f7;
   color: white;
+  color:black;
   font-weight: 600;
+  border: 3px solid#15cdfc;
+  box-shadow: 20px 20px 60px #a2a4a5, -20px -20px 60px hsl(204, 3%, 69%);
+`;
+const Button2 = styled.button`
+  width: 5%;
+  padding: 10px;
+  height: 10%;
+  border-radius: 10%;
+  background-color: #5cd8f7;
+  font-size: 30px;
+  color: black;
+  border: 3px solid#15cdfc;
+  box-shadow: 20px 20px 60px #a2a4a5, -20px -20px 60px hsl(204, 3%, 69%);
 `;
 
 const Checkout = () => {
   const { cart, setCart } = useContext(CartContext);
+  const { darkMode } = useContext(ThemeContext);
+
   const history = useHistory();
+  const styles = {
+    containerStyles: {
+      backgroundColor: darkMode === true ? "black" : "white",
+    },
+  };
 
   const modifyCount = (e, index) => {
     const cartCopy = [...cart];
@@ -158,12 +178,17 @@ const Checkout = () => {
     cart.forEach((item) => (total += item.price * item.count));
     return total;
   };
+  const removeItem = (index) => {
+    const newArray = [...cart];
+    newArray.splice(index, 1);
+    setCart(newArray);
+  };
 
   return (
-    <Container>
+    <Container style={styles.containerStyles}>
       <div>
         <Wrapper>
-          <Title>YOUR BAG</Title>
+          <Title>YOUR CART</Title>
           <Top>
             <TopButton
               className="checkoutButton"
@@ -203,9 +228,9 @@ const Checkout = () => {
                   </ProductDetail>
                   <PriceDetail>
                     <ProductAmountContainer>
-                      <Add />
+                      <button onClick={item.count + 1}> +</button>
                       <ProductAmount>{item.count}</ProductAmount>
-                      <Remove />
+                      <button onClick={item.count - 1}>-</button>
                     </ProductAmountContainer>
                     <ProductPrice>
                       <h5>
@@ -220,7 +245,16 @@ const Checkout = () => {
                       </h5>
                     </ProductPrice>
                   </PriceDetail>
+                  <Button2
+                    onClick={(e) => {
+                      e.preventDefault();
+                      removeItem(index);
+                    }}
+                  >
+                    <AiFillDelete />
+                  </Button2>
                 </Product>
+
                 <Hr />
               </Info>
             ))}

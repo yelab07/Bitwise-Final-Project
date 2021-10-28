@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams,useHistory } from "react-router-dom";
 import "./Product.css";
-import cartContext from "../../Context/ThemeContext";
-
+import cartContext from "../../Context/cartContext";
+// import { countContext } from "../../App";
+// const { count, setCount } = useContext(countContext);
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const history = useHistory();
   const [product, setProduct] = useState({});
+  
+
   const { cart, setCart } = useContext(cartContext);
   const [count, setCount] = useState(1);
 
@@ -28,18 +31,18 @@ const ProductDetailsPage = () => {
         <div className="describtionContainer">
           <h1 className="describtion title">{product.title}</h1>
           <hr />
+          <p className="description mainDescription">{product.description}</p>
+
           <h2 className="describtion price">$ {product.price}</h2>
           <h2 className="describtion category">{product.category}</h2>
-          <p className="description mainDescription">{product.describtion}</p>
-        </div>
-        <div className="addContainer">
-          <div>
-            <button className="cntBtn" onClick={() => setCount(count - 1)}>
+
+          <div className="buttonContainer">
+            <button className="countBtn" onClick={() => setCount(count - 1)}>
               -
             </button>
             {count}
             <button
-              className="cntBtn"
+              className="countBtn"
               onClick={() => {
                 setCount(count + 1);
               }}
@@ -47,34 +50,17 @@ const ProductDetailsPage = () => {
               +
             </button>
           </div>
-        </div>
-        <button
-          onClick={() => {
-            setCart([...cart, { ...product, count }]);
-            history.push("/checkout");
-          }}
-          className="cntBtn"
-        >
-          Add To Cart
-        </button>
-        {/* {cart.includes(product) ? (
+          <div className="addContainer"></div>
           <button
-            className="add remove"
-            onClick={() => setCart(cart.filter((c) => c.id !== product.id))}
-          >
-            Remove from Cart
-          </button>
-        ) : (
-          <button
-            className="add"
             onClick={() => {
               setCart([...cart, { ...product, count }]);
-              history.push("/");
+              history.push("/checkout");
             }}
+            className="countBtn"
           >
-            Add to Cart
+            Add To Cart
           </button>
-        )} */}
+        </div>
       </div>
     </div>
   );
