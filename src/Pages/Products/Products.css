@@ -5,9 +5,10 @@
   padding: 30px;
   gap: 25px;
   justify-content: space-evenly;
+  /* background-color: rgb(217, 242, 250); */
 }
 .product-container {
-background-color:#c7f2fd;
+  background-color: #c1effa;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -37,7 +38,6 @@ background-color:#c7f2fd;
   color: rgb(16, 57, 65);
   margin: 15px 0;
   text-decoration: none;
-
 }
 .product-name p {
   /* word-break: break-all; */
@@ -57,5 +57,4 @@ background-color:#c7f2fd;
   white-space: nowrap;
   overflow: hidden;
   text-transform: capitalize;
-
 }

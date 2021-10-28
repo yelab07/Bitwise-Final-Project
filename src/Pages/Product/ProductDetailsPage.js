@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams,useHistory } from "react-router-dom";
 import "./Product.css";
 import cartContext from "../../Context/cartContext";
-// import { countContext } from "../../App";
-// const { count, setCount } = useContext(countContext);
+
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const history = useHistory();

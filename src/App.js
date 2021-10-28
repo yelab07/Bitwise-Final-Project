@@ -6,8 +6,10 @@ import ProductDetailsPage from "./Pages/Product/ProductDetailsPage";
 import ProductsPage from "./Pages/Products/ProductsPage";
 import Navbar from "./Components/NavBar/Navbar";
 import Checkout from "./Pages/Checkout/Checkout";
+
+
 export const ThemeContext = React.createContext();
-export const countContext = React.createContext();
+
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [cart, setCart] = useState([]);
