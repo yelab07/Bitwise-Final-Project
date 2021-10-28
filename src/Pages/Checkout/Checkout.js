@@ -139,7 +139,7 @@ const Button = styled.button`
   padding: 10px;
   background-color: #5cd8f7;
   color: white;
-  color:black;
+  color: black;
   font-weight: 600;
   border: 3px solid#15cdfc;
   box-shadow: 20px 20px 60px #a2a4a5, -20px -20px 60px hsl(204, 3%, 69%);
@@ -191,7 +191,6 @@ const Checkout = () => {
           <Title>YOUR CART</Title>
           <Top>
             <TopButton
-              className="checkoutButton"
               onClick={() => {
                 setCart([]);
                 history.push("/");
@@ -201,7 +200,6 @@ const Checkout = () => {
             </TopButton>
             <TopButton
               type="filled"
-              className="checkoutButton"
               onClick={() => {
                 setCart([]);
                 history.push("/");
@@ -267,7 +265,6 @@ const Checkout = () => {
               <SummaryItemPrice></SummaryItemPrice>
             </SummaryItem>
             <Button
-              className="checkoutButton"
               onClick={() => {
                 setCart([]);
                 history.push("/");
